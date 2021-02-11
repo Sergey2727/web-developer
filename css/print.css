@@ -1,0 +1,77 @@
+/* Print Styles */
+
+/* Подключить этот файл на страницу */
+
+@media print {
+
+	/* Убираем ненужное для печати оформление */
+	/* Делаем весь текст черным */
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+	/* Подчеркиваем все ссылки */
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+	
+	/* После ссылок, в с кобках, 
+	выводим адрес - куда вела ссылка*/
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+	
+	/* Если у аббревиатур был задан атрибут title
+	то выводим его значение после самой аббревиатуры, в скобках
+	*/
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+	/* Для пустых ссылок и ссылок обрабатываемых скриптами - не выводим путь ссылки.
+	Скорее всего это ссылки внутри страницы, который открывают/закрывают элементы инфтерфейса страницы*/
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+	
+
+	/* Оформление блоков с контентом */
+	
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group;
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
